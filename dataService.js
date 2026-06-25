@@ -1,16 +1,23 @@
 /**
  * dataService.js
- * Capa de abstracción de datos para el portafolio de Oriol Casaponsa Prat.
+ * Capa de datos conectada a Supabase.
  * 
- * NOTA DE ARQUITECTURA:
- * Este servicio simula un backend real retornando Promesas (async/await).
- * Actualmente utiliza localStorage para persistir los datos en el navegador del usuario.
- * Para conectar a un servicio real (como Supabase o Firebase), solo es necesario
- * reemplazar las implementaciones de estos métodos por llamadas a la API correspondiente.
+ * INSTRUCCIONES DE CONFIGURACIÓN:
+ * 1. Ve a tu panel de Supabase: https://supabase.com/dashboard
+ * 2. Ve a Project Settings (icono de engranaje) -> API.
+ * 3. Copia la URL del proyecto ("Project URL") y colócala en SUPABASE_URL.
+ * 4. Copia la Anon Key ("anon public") y colócala en SUPABASE_ANON_KEY.
  */
 
-// Datos por defecto para inicializar la base de datos local
-const DEFAULT_DATA = {
+// REEMPLAZA ESTOS VALORES CON LOS DE TU PROYECTO SUPABASE
+const SUPABASE_URL = "https://piwkzftpfcuohkcewtlj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_p4crYRGKzs-lH2Fsim86pg_d77u459I";
+
+// Inicializar el cliente Supabase usando la librería importada via CDN
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Datos semilla locales para restablecer si se solicita
+const DEFAULT_SEEDS = {
   profile: {
     nombre: "Oriol Casaponsa Prat",
     subtitulo: "Técnico de Sistemas | ASIR | DevOps Junior | Automatización e IA aplicada",
@@ -70,7 +77,6 @@ const DEFAULT_DATA = {
     }
   ],
   tecnologias: [
-    // Sistemas
     { id: "tech-1", nombre: "Windows", categoria: "sistemas" },
     { id: "tech-2", nombre: "Linux básico", categoria: "sistemas" },
     { id: "tech-3", nombre: "Redes", categoria: "sistemas" },
@@ -78,7 +84,6 @@ const DEFAULT_DATA = {
     { id: "tech-5", nombre: "Copias de seguridad", categoria: "sistemas" },
     { id: "tech-6", nombre: "Monitorización", categoria: "sistemas" },
     { id: "tech-7", nombre: "Seguridad básica", categoria: "sistemas" },
-    // DevOps
     { id: "tech-8", nombre: "GitHub", categoria: "devops" },
     { id: "tech-9", nombre: "Docker", categoria: "devops" },
     { id: "tech-10", nombre: "Jenkins", categoria: "devops" },
@@ -86,7 +91,6 @@ const DEFAULT_DATA = {
     { id: "tech-12", nombre: "Kubernetes / Minikube", categoria: "devops" },
     { id: "tech-13", nombre: "CI/CD", categoria: "devops" },
     { id: "tech-14", nombre: "Automatización de despliegues", categoria: "devops" },
-    // Web
     { id: "tech-15", nombre: "HTML", categoria: "web" },
     { id: "tech-16", nombre: "CSS", categoria: "web" },
     { id: "tech-17", nombre: "JavaScript básico", categoria: "web" },
@@ -94,7 +98,6 @@ const DEFAULT_DATA = {
     { id: "tech-19", nombre: "TypeScript con apoyo de IA", categoria: "web" },
     { id: "tech-20", nombre: "Supabase", categoria: "web" },
     { id: "tech-21", nombre: "WordPress", categoria: "web" },
-    // IA aplicada
     { id: "tech-22", nombre: "Prompting técnico", categoria: "ia" },
     { id: "tech-23", nombre: "Creación de prototipos", categoria: "ia" },
     { id: "tech-24", nombre: "Depuración asistida", categoria: "ia" },
@@ -111,179 +114,311 @@ const DEFAULT_DATA = {
   ]
 };
 
-const STORAGE_KEY = "oriol_portfolio_data";
-
-// Helper para leer del localStorage o inicializar si está vacío
-function _getData() {
-  const data = localStorage.getItem(STORAGE_KEY);
-  if (!data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_DATA));
-    return DEFAULT_DATA;
-  }
-  try {
-    return JSON.parse(data);
-  } catch (e) {
-    console.error("Error leyendo localStorage, restableciendo valores por defecto.", e);
-    return DEFAULT_DATA;
-  }
-}
-
-// Helper para guardar en localStorage
-function _saveData(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-// Retorna un delay aleatorio para simular latencia de red
-function _delay(ms = 200) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 const dataService = {
   // --- PERFIL ---
   async getProfile() {
-    await _delay();
-    const data = _getData();
-    return data.profile;
+    const { data, error } = await supabase
+      .from('perfil')
+      .select('*')
+      .eq('id', 1)
+      .single();
+    if (error) {
+      console.error("Error al obtener perfil, usando local:", error);
+      return DEFAULT_SEEDS.profile;
+    }
+    return {
+      nombre: data.nombre,
+      subtitulo: data.subtitulo,
+      heroText: data.hero_text,
+      sobreMiText: data.sobre_mi_text
+    };
   },
 
   async updateProfile(profileUpdates) {
-    await _delay();
-    const data = _getData();
-    data.profile = { ...data.profile, ...profileUpdates };
-    _saveData(data);
-    return data.profile;
+    const { data, error } = await supabase
+      .from('perfil')
+      .update({
+        nombre: profileUpdates.nombre,
+        subtitulo: profileUpdates.subtitulo,
+        hero_text: profileUpdates.heroText,
+        sobre_mi_text: profileUpdates.sobreMiText
+      })
+      .eq('id', 1)
+      .select()
+      .single();
+    if (error) throw error;
+    return {
+      nombre: data.nombre,
+      subtitulo: data.subtitulo,
+      heroText: data.hero_text,
+      sobreMiText: data.sobre_mi_text
+    };
   },
 
   // --- CONTACTO ---
   async getContacto() {
-    await _delay();
-    const data = _getData();
-    return data.contacto;
+    const { data, error } = await supabase
+      .from('perfil')
+      .select('email, github, linkedin, cv_link')
+      .eq('id', 1)
+      .single();
+    if (error) {
+      console.error("Error al obtener contacto, usando local:", error);
+      return DEFAULT_SEEDS.contacto;
+    }
+    return {
+      email: data.email,
+      github: data.github,
+      linkedin: data.linkedin,
+      cvLink: data.cv_link
+    };
   },
 
   async updateContacto(contactoUpdates) {
-    await _delay();
-    const data = _getData();
-    data.contacto = { ...data.contacto, ...contactoUpdates };
-    _saveData(data);
-    return data.contacto;
+    const { data, error } = await supabase
+      .from('perfil')
+      .update({
+        email: contactoUpdates.email,
+        github: contactoUpdates.github,
+        linkedin: contactoUpdates.linkedin,
+        cv_link: contactoUpdates.cv_link
+      })
+      .eq('id', 1)
+      .select()
+      .single();
+    if (error) throw error;
+    return {
+      email: data.email,
+      github: data.github,
+      linkedin: data.linkedin,
+      cvLink: data.cv_link
+    };
   },
 
   // --- PROYECTOS ---
   async getProjects() {
-    await _delay();
-    const data = _getData();
-    return data.proyectos || [];
+    const { data, error } = await supabase
+      .from('proyectos')
+      .select('*')
+      .order('orden', { ascending: true });
+    if (error) {
+      console.error("Error al obtener proyectos:", error);
+      return [];
+    }
+    return data.map(p => ({
+      id: p.id,
+      nombre: p.nombre,
+      descripcion: p.descripcion,
+      papel: p.papel,
+      tecnologias: p.tecnologias,
+      aprendido: p.aprendido,
+      demoLink: p.demo_link,
+      githubLink: p.github_link,
+      imagen: p.imagen
+    }));
   },
 
   async saveProject(project) {
-    await _delay();
-    const data = _getData();
-    if (!data.proyectos) data.proyectos = [];
+    const projData = {
+      nombre: project.nombre,
+      descripcion: project.descripcion,
+      papel: project.papel,
+      tecnologias: project.tecnologias,
+      aprendido: project.aprendido,
+      demo_link: project.demoLink,
+      github_link: project.githubLink,
+      imagen: project.imagen
+    };
 
     if (project.id) {
       // Editar existente
-      const idx = data.proyectos.findIndex(p => p.id === project.id);
-      if (idx !== -1) {
-        data.proyectos[idx] = { ...data.proyectos[idx], ...project };
-      }
+      const { error } = await supabase
+        .from('proyectos')
+        .update(projData)
+        .eq('id', project.id);
+      if (error) throw error;
     } else {
       // Nuevo proyecto
-      project.id = "proj-" + Date.now();
-      data.proyectos.push(project);
+      const id = "proj-" + Date.now();
+      
+      // Obtener el orden máximo actual
+      const { data: ordData } = await supabase
+        .from('proyectos')
+        .select('orden')
+        .order('orden', { ascending: false })
+        .limit(1);
+      
+      const maxOrden = ordData && ordData.length > 0 ? ordData[0].orden : 0;
+      
+      const { error } = await supabase
+        .from('proyectos')
+        .insert({
+          id,
+          ...projData,
+          orden: maxOrden + 1
+        });
+      if (error) throw error;
     }
-    _saveData(data);
     return project;
   },
 
   async deleteProject(id) {
-    await _delay();
-    const data = _getData();
-    data.proyectos = (data.proyectos || []).filter(p => p.id !== id);
-    _saveData(data);
+    const { error } = await supabase
+      .from('proyectos')
+      .delete()
+      .eq('id', id);
+    if (error) throw error;
     return true;
   },
 
   async reorderProjects(orderedIds) {
-    await _delay();
-    const data = _getData();
-    const map = new Map(data.proyectos.map(p => [p.id, p]));
-    data.proyectos = orderedIds.map(id => map.get(id)).filter(Boolean);
-    _saveData(data);
-    return data.proyectos;
+    for (let i = 0; i < orderedIds.length; i++) {
+      const { error } = await supabase
+        .from('proyectos')
+        .update({ orden: i + 1 })
+        .eq('id', orderedIds[i]);
+      if (error) throw error;
+    }
+    return this.getProjects();
   },
 
   // --- TECNOLOGÍAS ---
   async getTechnologies() {
-    await _delay();
-    const data = _getData();
-    return data.tecnologias || [];
+    const { data, error } = await supabase
+      .from('tecnologias')
+      .select('*');
+    if (error) {
+      console.error("Error al obtener tecnologías:", error);
+      return [];
+    }
+    return data;
   },
 
   async saveTechnology(tech) {
-    await _delay();
-    const data = _getData();
-    if (!data.tecnologias) data.tecnologias = [];
+    const techData = {
+      nombre: tech.nombre,
+      categoria: tech.categoria
+    };
 
     if (tech.id) {
-      const idx = data.tecnologias.findIndex(t => t.id === tech.id);
-      if (idx !== -1) {
-        data.tecnologias[idx] = { ...data.tecnologias[idx], ...tech };
-      }
+      const { error } = await supabase
+        .from('tecnologias')
+        .update(techData)
+        .eq('id', tech.id);
+      if (error) throw error;
     } else {
-      tech.id = "tech-" + Date.now();
-      data.tecnologias.push(tech);
+      const id = "tech-" + Date.now();
+      const { error } = await supabase
+        .from('tecnologias')
+        .insert({ id, ...techData });
+      if (error) throw error;
     }
-    _saveData(data);
     return tech;
   },
 
   async deleteTechnology(id) {
-    await _delay();
-    const data = _getData();
-    data.tecnologias = (data.tecnologias || []).filter(t => t.id !== id);
-    _saveData(data);
+    const { error } = await supabase
+      .from('tecnologias')
+      .delete()
+      .eq('id', id);
+    if (error) throw error;
     return true;
   },
 
   // --- FORMACIÓN ---
   async getEducation() {
-    await _delay();
-    const data = _getData();
-    return data.formacion || [];
+    const { data, error } = await supabase
+      .from('formacion')
+      .select('*');
+    if (error) {
+      console.error("Error al obtener formación:", error);
+      return [];
+    }
+    return data;
   },
 
   async saveEducation(edu) {
-    await _delay();
-    const data = _getData();
-    if (!data.formacion) data.formacion = [];
+    const eduData = {
+      titulo: edu.titulo
+    };
 
     if (edu.id) {
-      const idx = data.formacion.findIndex(e => e.id === edu.id);
-      if (idx !== -1) {
-        data.formacion[idx] = { ...data.formacion[idx], ...edu };
-      }
+      const { error } = await supabase
+        .from('formacion')
+        .update(eduData)
+        .eq('id', edu.id);
+      if (error) throw error;
     } else {
-      edu.id = "edu-" + Date.now();
-      data.formacion.push(edu);
+      const id = "edu-" + Date.now();
+      const { error } = await supabase
+        .from('formacion')
+        .insert({ id, ...eduData });
+      if (error) throw error;
     }
-    _saveData(data);
     return edu;
   },
 
   async deleteEducation(id) {
-    await _delay();
-    const data = _getData();
-    data.formacion = (data.formacion || []).filter(e => e.id !== id);
-    _saveData(data);
+    const { error } = await supabase
+      .from('formacion')
+      .delete()
+      .eq('id', id);
+    if (error) throw error;
     return true;
   },
 
   // --- RESTABLECER ---
   async resetToDefault() {
-    await _delay();
-    _saveData(DEFAULT_DATA);
-    return DEFAULT_DATA;
+    // 1. Borrar todas las filas actuales
+    await supabase.from('proyectos').delete().neq('id', 'placeholder');
+    await supabase.from('tecnologias').delete().neq('id', 'placeholder');
+    await supabase.from('formacion').delete().neq('id', 'placeholder');
+    
+    // 2. Restaurar Perfil e información de contacto
+    await supabase.from('perfil').update({
+      nombre: DEFAULT_SEEDS.profile.nombre,
+      subtitulo: DEFAULT_SEEDS.profile.subtitulo,
+      hero_text: DEFAULT_SEEDS.profile.heroText,
+      sobre_mi_text: DEFAULT_SEEDS.profile.sobreMiText,
+      email: DEFAULT_SEEDS.contacto.email,
+      github: DEFAULT_SEEDS.contacto.github,
+      linkedin: DEFAULT_SEEDS.contacto.linkedin,
+      cv_link: DEFAULT_SEEDS.contacto.cvLink
+    }).eq('id', 1);
+
+    // 3. Re-insertar proyectos
+    for (let i = 0; i < DEFAULT_SEEDS.proyectos.length; i++) {
+      const p = DEFAULT_SEEDS.proyectos[i];
+      await supabase.from('proyectos').insert({
+        id: p.id,
+        nombre: p.nombre,
+        descripcion: p.descripcion,
+        papel: p.papel,
+        tecnologias: p.tecnologias,
+        aprendido: p.aprendido,
+        demo_link: p.demoLink,
+        github_link: p.githubLink,
+        imagen: p.imagen,
+        orden: i + 1
+      });
+    }
+
+    // 4. Re-insertar tecnologías
+    for (const t of DEFAULT_SEEDS.tecnologias) {
+      await supabase.from('tecnologias').insert({
+        id: t.id,
+        nombre: t.nombre,
+        categoria: t.categoria
+      });
+    }
+
+    // 5. Re-insertar formación
+    for (const e of DEFAULT_SEEDS.formacion) {
+      await supabase.from('formacion').insert({
+        id: e.id,
+        titulo: e.titulo
+      });
+    }
   }
 };
 
