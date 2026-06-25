@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oriol Casaponsa Prat | Portafolio Sistemas & DevOps</title>
+  <meta name="description" content="Portafolio profesional de Oriol Casaponsa Prat. Técnico de Sistemas, ASIR, DevOps Junior y automatización con IA aplicada.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- --- CABECERA DE NAVEGACIÓN --- -->
+  <header class="header glass" id="header">
+    <div class="container">
+      <a href="#inicio" class="logo">
+        <span class="logo-dot"></span>
+        Oriol Casaponsa
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#inicio" class="nav-link active" id="nav-link-inicio">Inicio</a>
+        <a href="#sobre-mi" class="nav-link" id="nav-link-sobre-mi">Sobre mí</a>
+        <a href="#proyectos" class="nav-link" id="nav-link-proyectos">Proyectos</a>
+        <a href="#tecnologias" class="nav-link" id="nav-link-tecnologias">Tecnologías</a>
+        <a href="#formacion" class="nav-link" id="nav-link-formacion">Formación</a>
+        <a href="#contacto" class="nav-link" id="nav-link-contacto">Contacto</a>
+      </nav>
+      
+      <div class="admin-trigger-container">
+        <!-- Discreto acceso oculto al panel de administración -->
+        <span class="admin-trigger" id="admin-trigger" title="Acceso al sistema">admin</span>
+        
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- --- SECCIÓN HERO --- -->
+  <section id="inicio" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span id="hero-badge-text">Sistemas & DevOps Junior</span>
+          </div>
+          <h1 class="hero-title" id="hero-title">Oriol Casaponsa Prat</h1>
+          <h2 class="hero-subtitle" id="hero-subtitle">Técnico de Sistemas | ASIR | DevOps Junior | Automatización e IA aplicada</h2>
+          <p class="hero-text" id="hero-text">
+            Soy un perfil técnico orientado a sistemas, infraestructura, cloud y automatización. Me interesa entender cómo funcionan las aplicaciones modernas desde la parte de sistemas: despliegue, configuración, contenedores, pipelines, seguridad básica, documentación y mantenimiento. Utilizo herramientas de inteligencia artificial para acelerar la creación de prototipos y proyectos reales, siempre revisando, probando y documentando el resultado.
+          </p>
+          <div class="hero-ctas">
+            <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+            <a href="#tecnologias" class="btn btn-secondary">Ver tecnologías</a>
+            <a href="#contacto" class="btn btn-secondary">Contactar</a>
+          </div>
+        </div>
+        
+        <div class="hero-visual">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+              </div>
+              <span class="terminal-title">bash - status_check.sh</span>
+              <span></span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="terminal-prompt">oriol@asir-node:~$</span> <span class="terminal-command">./check_profile.sh</span>
+              </div>
+              <div class="terminal-line terminal-output">Cargando módulos de sistemas... [OK]</div>
+              <div class="terminal-line terminal-output">Comprobando integraciones DevOps... [OK]</div>
+              <div class="terminal-line terminal-output">
+                <span class="terminal-success">●</span> DevOps Pipeline: Jenkins & Docker up
+              </div>
+              <div class="terminal-line terminal-output">
+                <span class="terminal-success">●</span> Cloud Provider: AWS EC2 active
+              </div>
+              <div class="terminal-line terminal-output">
+                <span class="terminal-success">●</span> IA aplicada: Prompting & Debugging active
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-prompt">oriol@asir-node:~$</span> <span class="terminal-command">cat quote.txt</span>
+              </div>
+              <div class="terminal-line terminal-output" style="color: var(--accent-purple);">
+                "No soy programador full stack tradicional. Soy un perfil de sistemas que sabe apoyarse en herramientas de IA para crear, desplegar, probar, documentar y mejorar soluciones digitales reales."
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-prompt">oriol@asir-node:~$</span><span class="terminal-cursor"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SECCIÓN SOBRE MÍ --- -->
+  <section id="sobre-mi" class="glass" style="border-left: none; border-right: none; background: rgba(14, 19, 34, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Perfil</span>
+        <h2 class="section-title">Sobre mí</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text" id="about-text-container">
+          <p>
+            Soy técnico de sistemas formado en **ASIR**, con interés en DevOps, cloud computing, automatización, ciberseguridad básica y uso práctico de inteligencia artificial. Mi perfil está más orientado a sistemas que a programación tradicional, pero me gusta crear proyectos digitales funcionales para aprender cómo se conectan todas las piezas: servidores, bases de datos, despliegues, repositorios, contenedores, pipelines y servicios cloud.
+          </p>
+          <p>
+            Mi forma de trabajar combina análisis, pruebas, documentación y uso de herramientas de IA para construir soluciones útiles. No busco presentarme como programador senior, sino como un perfil técnico capaz de entender un proyecto, estructurarlo, probarlo, desplegarlo y mejorarlo.
+          </p>
+        </div>
+        <div class="about-highlight glass">
+          <div class="highlight-quote">
+            "Mi perfil está más orientado a sistemas que a programación tradicional. Me interesa entender cómo una aplicación pasa de ser una idea a estar desplegada y funcionando."
+          </div>
+          <div class="highlight-author">Oriol Casaponsa Prat</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SECCIÓN PROYECTOS DESTACADOS --- -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Portafolio</span>
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <p class="section-subtitle">Construyo proyectos digitales desde una visión práctica: requisitos, pruebas, despliegue y mejora continua.</p>
+      </div>
+      
+      <!-- Grid de proyectos que se renderiza dinámicamente -->
+      <div class="projects-grid" id="projects-render-container">
+        <!-- Cargado dinámicamente por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SECCIÓN TECNOLOGÍAS Y HERRAMIENTAS --- -->
+  <section id="tecnologias" class="glass" style="border-left: none; border-right: none; background: rgba(14, 19, 34, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Conocimientos</span>
+        <h2 class="section-title">Tecnologías y herramientas</h2>
+        <p class="section-subtitle">Herramientas que utilizo y entornos que administro para dar soporte, desplegar y automatizar flujos de trabajo.</p>
+      </div>
+      
+      <div class="tech-grid" id="tech-render-container">
+        <!-- Renderizado dinámico en 4 categorías: Sistemas, DevOps, Web, IA aplicada -->
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SECCIÓN FORMACIÓN --- -->
+  <section id="formacion">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Estudios</span>
+        <h2 class="section-title">Formación</h2>
+      </div>
+      
+      <div class="education-timeline" id="education-render-container">
+        <!-- Cargado dinámicamente por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SECCIÓN CÓMO TRABAJO --- -->
+  <section id="como-trabajo" class="glass" style="border-left: none; border-right: none; background: rgba(14, 19, 34, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Metodología</span>
+        <h2 class="section-title">Cómo trabajo</h2>
+        <p class="section-subtitle">Uso la inteligencia artificial como herramienta de apoyo para crear, probar y documentar proyectos con rigor técnico.</p>
+      </div>
+      
+      <div class="work-grid">
+        <div class="work-card glass">
+          <div class="work-num">01</div>
+          <h3 class="work-title">Análisis</h3>
+          <p class="section-subtitle" style="font-size:0.9rem; text-align:left; margin:0;">Analizo la necesidad del proyecto.</p>
+        </div>
+        <div class="work-card glass">
+          <div class="work-num">02</div>
+          <h3 class="work-title">Estructuración</h3>
+          <p class="section-subtitle" style="font-size:0.9rem; text-align:left; margin:0;">Defino funcionalidades y estructura.</p>
+        </div>
+        <div class="work-card glass">
+          <div class="work-num">03</div>
+          <h3 class="work-title">Copilotaje (IA)</h3>
+          <p class="section-subtitle" style="font-size:0.9rem; text-align:left; margin:0;">Uso IA como apoyo para crear prototipos y acelerar tareas.</p>
+        </div>
+        <div class="work-card glass">
+          <div class="work-num">04</div>
+          <h3 class="work-title">Validación</h3>
+          <p class="section-subtitle" style="font-size:0.9rem; text-align:left; margin:0;">Reviso y pruebo el resultado minuciosamente.</p>
+        </div>
+        <div class="work-card glass">
+          <div class="work-num">05</div>
+          <h3 class="work-title">Documentación</h3>
+          <p class="section-subtitle" style="font-size:0.9rem; text-align:left; margin:0;">Documento cambios, errores y aprendizajes.</p>
+        </div>
+        <div class="work-card glass">
+          <div class="work-num">06</div>
+          <h3 class="work-title">Mantenibilidad</h3>
+          <p class="section-subtitle" style="font-size:0.9rem; text-align:left; margin:0;">Me centro en que el proyecto funcione y sea fácil de mantener.</p>
+        </div>
+      </div>
+      
+      <div class="work-footer-text">
+        Me interesa especialmente la parte que conecta el desarrollo con los sistemas: despliegue, configuración, pruebas, automatización y mantenimiento. Para mí, un proyecto no termina cuando se ve bien, sino cuando se puede usar, explicar, corregir y mejorar. No me centro solo en crear una web bonita, sino en entender cómo funciona y cómo mantenerla.
+      </div>
+    </div>
+  </section>
+
+  <!-- --- SECCIÓN CONTACTO --- -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Contacto</span>
+        <h2 class="section-title">Hablemos</h2>
+      </div>
+      
+      <div class="contact-card glass">
+        <p class="contact-text">
+          Si quieres contactar conmigo para prácticas, colaboración o proyectos relacionados con sistemas, DevOps, cloud o automatización, puedes escribirme a través de estos enlaces.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:tuemail@email.com" class="btn btn-primary contact-link-btn" id="contact-email-btn">
+            <i data-lucide="mail"></i>
+            Enviar Correo
+          </a>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary contact-link-btn" id="contact-github-btn">
+            <i data-lucide="github"></i>
+            GitHub
+          </a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary contact-link-btn" id="contact-linkedin-btn">
+            <i data-lucide="linkedin"></i>
+            LinkedIn
+          </a>
+          <a href="#" class="btn btn-secondary contact-link-btn" id="contact-cv-btn" download>
+            <i data-lucide="download"></i>
+            Descargar CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- PIE DE PÁGINA --- -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Oriol Casaponsa Prat. Todos los derechos reservados.</p>
+      <p style="margin-top: 8px; font-size: 0.75rem;">Sistemas | DevOps Junior | IA Copiloted</p>
+    </div>
+  </footer>
+
+  <!-- --- MODAL DE LOGIN ADMINISTRADOR --- -->
+  <div class="modal-overlay" id="admin-login-modal">
+    <div class="login-card glass">
+      <h3 class="login-title">Administración</h3>
+      <p class="login-desc">Acceso restringido para el mantenimiento de contenidos.</p>
+      
+      <form id="admin-login-form" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <label for="admin-password" class="form-label">Contraseña</label>
+          <input type="password" id="admin-password" class="form-control" placeholder="Introduce la contraseña" required autocomplete="current-password">
+          <span class="error-msg" id="login-error-msg">Contraseña incorrecta. Inténtalo de nuevo.</span>
+        </div>
+        
+        <div class="login-actions">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-login">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- --- DASHBOARD DE ADMINISTRACIÓN (OCULTO INICIALMENTE) --- -->
+  <div class="admin-dashboard-container" id="admin-dashboard">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo">
+        <i data-lucide="shield" style="color: var(--accent-purple);"></i>
+        Console Admin
+      </div>
+      
+      <nav class="admin-menu">
+        <div class="admin-menu-item active" data-tab="perfil">
+          <i data-lucide="user"></i>
+          Perfil
+        </div>
+        <div class="admin-menu-item" data-tab="proyectos-admin">
+          <i data-lucide="folder-git-2"></i>
+          Proyectos
+        </div>
+        <div class="admin-menu-item" data-tab="tecnologias-admin">
+          <i data-lucide="cpu"></i>
+          Tecnologías
+        </div>
+        <div class="admin-menu-item" data-tab="formacion-admin">
+          <i data-lucide="graduation-cap"></i>
+          Formación
+        </div>
+        <div class="admin-menu-item" data-tab="contacto-admin">
+          <i data-lucide="link"></i>
+          Contacto
+        </div>
+      </nav>
+      
+      <div class="admin-footer">
+        <button class="btn btn-secondary" id="btn-reset-data" style="padding: 8px 12px; font-size: 0.8rem; border-color: rgba(239, 68, 68, 0.2); color: #f87171;">
+          <i data-lucide="refresh-cw" style="width: 14px;"></i> Restablecer por defecto
+        </button>
+        <button class="btn btn-primary" id="btn-logout" style="padding: 8px 12px; font-size: 0.8rem;">
+          <i data-lucide="log-out" style="width: 14px;"></i> Salir
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Panel -->
+    <main class="admin-main">
+      <div class="admin-top-bar">
+        <h2 class="admin-page-title" id="admin-section-title">Perfil Personal</h2>
+        <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+          <span style="width: 8px; height: 8px; border-radius:50%; background: var(--accent-green);"></span>
+          Oriol Casaponsa Prat
+        </div>
+      </div>
+      
+      <div class="admin-content-area">
+        
+        <!-- Pestaña Perfil -->
+        <div class="admin-tab-content active" id="tab-perfil">
+          <div class="admin-card">
+            <h3 class="admin-card-title" style="margin-bottom: 20px;">Información Principal</h3>
+            <form id="form-profile-admin">
+              <div class="form-group">
+                <label for="profile-name" class="form-label">Nombre Completo</label>
+                <input type="text" id="profile-name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="profile-subtitle" class="form-label">Subtítulo Profesional</label>
+                <input type="text" id="profile-subtitle" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="profile-hero" class="form-label">Texto de Presentación (Hero)</label>
+                <textarea id="profile-hero" class="form-control" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="profile-about" class="form-label">Sobre Mí</label>
+                <textarea id="profile-about" class="form-control" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar Perfil</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Pestaña Proyectos -->
+        <div class="admin-tab-content" id="tab-proyectos-admin">
+          <!-- Vista de Lista de Proyectos -->
+          <div id="projects-list-view">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title">Gestión de Proyectos</h3>
+              <button class="btn btn-primary" id="btn-add-project" style="padding: 8px 16px; font-size: 0.85rem;">
+                <i data-lucide="plus"></i> Añadir Proyecto
+              </button>
+            </div>
+            
+            <div class="admin-card">
+              <div id="projects-admin-list">
+                <!-- Cargado dinámicamente con botones de editar, eliminar y ordenar -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario de Añadir/Editar Proyecto (Oculto inicialmente) -->
+          <div id="project-form-view" style="display: none;">
+            <div class="admin-card">
+              <h3 class="admin-card-title" id="project-form-title">Nuevo Proyecto</h3>
+              <form id="form-project-editor" style="margin-top: 20px;">
+                <input type="hidden" id="project-id">
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="project-name" class="form-label">Nombre del Proyecto</label>
+                    <input type="text" id="project-name" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="project-image-url" class="form-label">URL de la Imagen (o placeholder)</label>
+                    <input type="text" id="project-image-url" class="form-control">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="project-desc" class="form-label">Descripción</label>
+                  <textarea id="project-desc" class="form-control" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="project-role" class="form-label">Mi papel en el proyecto</label>
+                  <input type="text" id="project-role" class="form-control" required placeholder="Definición de requisitos, pruebas de uso, etc.">
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="project-tech" class="form-label">Tecnologías o herramientas (separadas por comas)</label>
+                    <input type="text" id="project-tech" class="form-control" required placeholder="React, Docker, Jenkins, etc.">
+                  </div>
+                  <div class="form-group">
+                    <label for="project-learned" class="form-label">¿Qué he aprendido?</label>
+                    <textarea id="project-learned" class="form-control" required></textarea>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="project-demo" class="form-label">Enlace a Demo (Ver proyecto)</label>
+                    <input type="text" id="project-demo" class="form-control" placeholder="#">
+                  </div>
+                  <div class="form-group">
+                    <label for="project-code" class="form-label">Enlace a Código (GitHub)</label>
+                    <input type="text" id="project-code" class="form-control" placeholder="#">
+                  </div>
+                </div>
+
+                <div class="login-actions" style="justify-content: flex-start;">
+                  <button type="button" class="btn btn-secondary" id="btn-cancel-project">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Guardar Proyecto</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestaña Tecnologías -->
+        <div class="admin-tab-content" id="tab-tecnologias-admin">
+          <!-- Vista de lista/edición rápida -->
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Tecnologías</h3>
+            <button class="btn btn-primary" id="btn-add-tech" style="padding: 8px 16px; font-size: 0.85rem;">
+              <i data-lucide="plus"></i> Añadir Tecnología
+            </button>
+          </div>
+
+          <!-- Formulario rápido (Oculto) -->
+          <div id="tech-form-view" class="admin-card" style="display: none; margin-bottom: 20px;">
+            <h3 class="admin-card-title" id="tech-form-title">Nueva Tecnología</h3>
+            <form id="form-tech-editor" style="margin-top: 16px;">
+              <input type="hidden" id="tech-id">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tech-name" class="form-label">Nombre</label>
+                  <input type="text" id="tech-name" class="form-control" required placeholder="Ej. Terraform">
+                </div>
+                <div class="form-group">
+                  <label for="tech-category" class="form-label">Categoría</label>
+                  <select id="tech-category" class="form-control" required>
+                    <option value="sistemas">Sistemas y administración</option>
+                    <option value="devops">DevOps y cloud</option>
+                    <option value="web">Web y bases de datos</option>
+                    <option value="ia">IA aplicada</option>
+                  </select>
+                </div>
+              </div>
+              <div class="login-actions" style="justify-content: flex-start;">
+                <button type="button" class="btn btn-secondary" id="btn-cancel-tech">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar Tecnología</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="admin-card">
+            <div id="tech-admin-list">
+              <!-- Renderizado dinámico de tecnologías agrupadas por categoría con botón de eliminar -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestaña Formación -->
+        <div class="admin-tab-content" id="tab-formacion-admin">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Elementos de Formación</h3>
+            <button class="btn btn-primary" id="btn-add-edu" style="padding: 8px 16px; font-size: 0.85rem;">
+              <i data-lucide="plus"></i> Añadir Formación
+            </button>
+          </div>
+
+          <!-- Formulario de Formación (Oculto) -->
+          <div id="edu-form-view" class="admin-card" style="display: none; margin-bottom: 20px;">
+            <h3 class="admin-card-title" id="edu-form-title">Nueva Formación</h3>
+            <form id="form-edu-editor" style="margin-top: 16px;">
+              <input type="hidden" id="edu-id">
+              <div class="form-group">
+                <label for="edu-title" class="form-label">Descripción de la formación</label>
+                <input type="text" id="edu-title" class="form-control" required placeholder="Ej. Certificación AWS Cloud Practitioner">
+              </div>
+              <div class="login-actions" style="justify-content: flex-start;">
+                <button type="button" class="btn btn-secondary" id="btn-cancel-edu">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="admin-card">
+            <div id="edu-admin-list">
+              <!-- Renderizado dinámico de formación con editar/eliminar -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestaña Contacto -->
+        <div class="admin-tab-content" id="tab-contacto-admin">
+          <div class="admin-card">
+            <h3 class="admin-card-title" style="margin-bottom: 20px;">Enlaces de Contacto</h3>
+            <form id="form-contacto-admin">
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email de Contacto</label>
+                <input type="email" id="contact-email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-github" class="form-label">Enlace a GitHub</label>
+                <input type="url" id="contact-github" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-linkedin" class="form-label">Enlace a LinkedIn</label>
+                <input type="url" id="contact-linkedin" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-cv" class="form-label">Enlace al CV (descarga)</label>
+                <input type="text" id="contact-cv" class="form-control" required placeholder="Ej. cv.pdf o #">
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar Contacto</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- --- MENSAJE DE GUARDADO (TOAST) --- -->
+  <div class="toast" id="toast">
+    Cambios guardados con éxito.
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- JavaScript Controlador -->
+  <script type="module" src="app.js"></script>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
